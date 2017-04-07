@@ -206,6 +206,10 @@ class AirCargoProblem(Problem):
         '''
         # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
         count = 0
+        n_state = decode_state(node.state, self.state_map)
+        for g in self.goal:
+            if g not in n_state.pos:
+                count += 1
         return count
 
 
