@@ -57,8 +57,8 @@ class AirCargoProblem(Problem):
 
             :return: list of Action objects
             '''
-            loads = []
             # TODO create all load ground actions from the domain Load action
+            loads = []
             for c in self.cargos:
                 for a in self.airports:
                     for p in self.planes:
@@ -78,8 +78,8 @@ class AirCargoProblem(Problem):
 
             :return: list of Action objects
             '''
-            unloads = []
             # TODO create all Unload ground actions from the domain Unload action
+            unloads = []
             for c in self.cargos:
                 for a in self.airports:
                     for p in self.planes:
