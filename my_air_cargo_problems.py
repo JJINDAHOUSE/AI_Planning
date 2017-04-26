@@ -8,7 +8,7 @@ from lp_utils import (
     FluentState, encode_state, decode_state,
 )
 from my_planning_graph import PlanningGraph
-
+import logging
 
 class AirCargoProblem(Problem):
     def __init__(self, cargos, planes, airports, initial: FluentState, goal: list):
@@ -63,10 +63,10 @@ class AirCargoProblem(Problem):
                 for a in self.airports:
                     for p in self.planes:
                         precond_pos = [expr("At({}, {})".format(c, a)), 
-                                       expr("At({}, {})".format(p, a)),]
-                        precond_neg = []
-                        effect_add = [expr("In({}, {})".format(c, p))]
-                        effect_rem = [expr("At({}, {})".format(c, a))]
+                                       expr("At({}, {})".format(p, a)),] #  positive precondition
+                        precond_neg = []  # negative precondition
+                        effect_add = [expr("In({}, {})".format(c, p))] #  add effect
+                        effect_rem = [expr("At({}, {})".format(c, a))] #  remove effect
                         load = Action(expr("Load({}, {}, {})".format(c, p, a)),
                                       [precond_pos, precond_neg],
                                       [effect_add, effect_rem])
@@ -84,7 +84,7 @@ class AirCargoProblem(Problem):
                 for a in self.airports:
                     for p in self.planes:
                         precond_pos = [expr("In({}, {})".format(c, p)),
-                                       expr("At({}, {})".format(p, a)),]
+                                       expr("At({}, {})".format(p, a)),] #  
                         precond_neg = []
                         effect_add = [expr("At({}, {})".format(c, a))]
                         effect_rem = [expr("In({}, {})".format(c, p))]

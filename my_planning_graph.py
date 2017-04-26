@@ -2,6 +2,7 @@ from aimacode.planning import Action
 from aimacode.search import Problem
 from aimacode.utils import expr
 from lp_utils import decode_state
+import logging
 
 
 class PgNode():
